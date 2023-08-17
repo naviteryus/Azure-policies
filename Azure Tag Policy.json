@@ -1,0 +1,101 @@
+{
+  "mode": "Indexed",
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "[concat('tags[', parameters('tagName'), ']')]",
+          "exists": "false"
+        },
+        {
+          "value": "[resourceGroup().tags[parameters('tagName')]]",
+          "notEquals": ""
+        },
+        {
+          "field": "[concat('tags[', parameters('tagName1'), ']')]",
+          "exists": "false"
+        },
+        {
+          "value": "[resourceGroup().tags[parameters('tagName1')]]",
+          "notEquals": ""
+        },
+        {
+          "field": "[concat('tags[', parameters('tagName2'), ']')]",
+          "exists": "false"
+        },
+        {
+          "value": "[resourceGroup().tags[parameters('tagName2')]]",
+          "notEquals": ""
+        },
+        {
+          "field": "[concat('tags[', parameters('tagName3'), ']')]",
+          "exists": "false"
+        },
+        {
+          "value": "[resourceGroup().tags[parameters('tagName3')]]",
+          "notEquals": ""
+        }
+      ]
+    },
+    "then": {
+      "effect": "modify",
+      "details": {
+        "roleDefinitionIds": [
+          "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+        ],
+        "operations": [
+          {
+            "operation": "add",
+            "field": "[concat('tags[', parameters('tagName'), ']')]",
+            "value": "[resourceGroup().tags[parameters('tagName')]]"
+          },
+          {
+            "operation": "add",
+            "field": "[concat('tags[', parameters('tagName1'), ']')]",
+            "value": "[resourceGroup().tags[parameters('tagName1')]]"
+          },
+          {
+            "operation": "add",
+            "field": "[concat('tags[', parameters('tagName2'), ']')]",
+            "value": "[resourceGroup().tags[parameters('tagName2')]]"
+          },
+          {
+            "operation": "add",
+            "field": "[concat('tags[', parameters('tagName3'), ']')]",
+            "value": "[resourceGroup().tags[parameters('tagName3')]]"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "tagName": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Tag Name1",
+        "description": "Name of the tag, such as 'Name'"
+      }
+    },
+    "tagName1": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Tag Name2",
+        "description": "Name of the tag, such as 'environment'"
+      }
+    },
+    "tagName2": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Tag Name3",
+        "description": "Name of the tag, such as 'Application'"
+      }
+    },
+    "tagName3": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Tag Name4",
+        "description": "Name of the tag, such as 'Role'"
+      }
+    }
+  }
+}
